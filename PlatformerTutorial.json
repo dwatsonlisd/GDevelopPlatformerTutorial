@@ -711,6 +711,14 @@
         "name": "Death4",
         "smoothed": false,
         "userAdded": false
+      },
+      {
+        "file": "Platform_Dirt1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Platform_Dirt1.png",
+        "smoothed": false,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -733,16 +741,16 @@
       "title": "",
       "v": 209,
       "uiSettings": {
-        "grid": false,
+        "grid": true,
         "gridType": "rectangular",
-        "gridWidth": 32,
-        "gridHeight": 32,
+        "gridWidth": 16,
+        "gridHeight": 16,
         "gridOffsetX": 0,
         "gridOffsetY": 0,
         "gridColor": 10401023,
         "gridAlpha": 0.8,
-        "snap": false,
-        "zoomFactor": 0.546875,
+        "snap": true,
+        "zoomFactor": 2.599152591679652,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -754,12 +762,80 @@
           "height": 0,
           "keepRatio": true,
           "layer": "",
-          "name": "NewSprite",
+          "name": "Player",
           "persistentUuid": "0f99ebdf-58e6-4790-9a69-bcedfea678b3",
           "width": 0,
-          "x": 580,
-          "y": 313,
+          "x": 576,
+          "y": 304,
           "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 16,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Platform_Dirt",
+          "persistentUuid": "dc5a7101-d52c-481a-b028-cdd8892f2f62",
+          "width": 208,
+          "x": 448,
+          "y": 352,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 128,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Platform_Dirt",
+          "persistentUuid": "b2799161-5000-4721-be6d-86999f6b718b",
+          "width": 16,
+          "x": 448,
+          "y": 224,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 16,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Platform_Dirt",
+          "persistentUuid": "f523e89c-a940-4d95-803a-8bd3ce8e9941",
+          "width": 64,
+          "x": 656,
+          "y": 304,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 16,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Platform_Dirt",
+          "persistentUuid": "889ec241-74ec-46a5-8633-a9e6e4ce1a0e",
+          "width": 64,
+          "x": 720,
+          "y": 256,
+          "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -769,21 +845,42 @@
         {
           "adaptCollisionMaskAutomatically": true,
           "assetStoreId": "",
-          "name": "NewSprite",
+          "name": "Player",
           "type": "Sprite",
           "updateIfNotVisible": false,
           "variables": [],
           "effects": [],
-          "behaviors": [],
+          "behaviors": [
+            {
+              "acceleration": 1500,
+              "canGoDownFromJumpthru": true,
+              "canGrabPlatforms": false,
+              "canGrabWithoutMoving": true,
+              "deceleration": 1500,
+              "gravity": 300,
+              "ignoreDefaultControls": false,
+              "jumpSpeed": 200,
+              "jumpSustainTime": 0.2,
+              "ladderClimbingSpeed": 150,
+              "maxFallingSpeed": 300,
+              "maxSpeed": 250,
+              "name": "PlatformerObject",
+              "slopeMaxAngle": 60,
+              "type": "PlatformBehavior::PlatformerObjectBehavior",
+              "useLegacyTrajectory": false,
+              "xGrabTolerance": 10,
+              "yGrabOffset": 0
+            }
+          ],
           "animations": [
             {
               "name": "Idle",
               "useMultipleDirections": false,
               "directions": [
                 {
-                  "looping": false,
+                  "looping": true,
                   "metadata": "{\"pskl\":{}}",
-                  "timeBetweenFrames": 0.08,
+                  "timeBetweenFrames": 0.15,
                   "sprites": [
                     {
                       "hasCustomCollisionMask": true,
@@ -2138,17 +2235,78 @@
               ]
             }
           ]
+        },
+        {
+          "assetStoreId": "",
+          "height": 16,
+          "name": "Platform_Dirt",
+          "texture": "Platform_Dirt1.png",
+          "type": "TiledSpriteObject::TiledSprite",
+          "width": 16,
+          "variables": [],
+          "effects": [],
+          "behaviors": [
+            {
+              "canBeGrabbed": true,
+              "name": "Platform",
+              "platformType": "NormalPlatform",
+              "type": "PlatformBehavior::PlatformBehavior",
+              "yGrabOffset": 0
+            }
+          ]
         }
       ],
       "objectsFolderStructure": {
         "folderName": "__ROOT",
         "children": [
           {
-            "objectName": "NewSprite"
+            "objectName": "Player"
+          },
+          {
+            "objectName": "Platform_Dirt"
           }
         ]
       },
-      "events": [],
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ZoomCamera"
+              },
+              "parameters": [
+                "",
+                "4",
+                "",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "CentreCamera"
+              },
+              "parameters": [
+                "",
+                "Player",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
       "layers": [
         {
           "ambientLightColorB": 200,
@@ -2211,6 +2369,14 @@
         {
           "name": "Opacity",
           "type": "OpacityCapability::OpacityBehavior"
+        },
+        {
+          "name": "Platform",
+          "type": "PlatformBehavior::PlatformBehavior"
+        },
+        {
+          "name": "PlatformerObject",
+          "type": "PlatformBehavior::PlatformerObjectBehavior"
         },
         {
           "name": "Resizable",
